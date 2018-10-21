@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hnist.graduation.mapped.ThesisapplyMapper" >
+  <resultMap id="BaseResultMap" type="com.hnist.graduation.entity.Thesisapply" >
+    <id column="THID" property="thid" jdbcType="VARCHAR" />
+    <id column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="APPLY" property="apply" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    THID, UID, TID, APPLY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hnist.graduation.entity.ThesisapplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from thesisapply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hnist.graduation.entity.ThesisapplyKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from thesisapply
+    where THID = #{thid,jdbcType=VARCHAR}
+      and UID = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hnist.graduation.entity.ThesisapplyKey" >
+    delete from thesisapply
+    where THID = #{thid,jdbcType=VARCHAR}
+      and UID = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hnist.graduation.entity.ThesisapplyExample" >
+    delete from thesisapply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hnist.graduation.entity.Thesisapply" >
+    insert into thesisapply (THID, UID, TID, 
+      APPLY)
+    values (#{thid,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, 
+      #{apply,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hnist.graduation.entity.Thesisapply" >
+    insert into thesisapply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="thid != null" >
+        THID,
+      </if>
+      <if test="uid != null" >
+        UID,
+      </if>
+      <if test="tid != null" >
+        TID,
+      </if>
+      <if test="apply != null" >
+        APPLY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="thid != null" >
+        #{thid,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="apply != null" >
+        #{apply,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hnist.graduation.entity.ThesisapplyExample" resultType="java.lang.Integer" >
+    select count(*) from thesisapply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update thesisapply
+    <set >
+      <if test="record.thid != null" >
+        THID = #{record.thid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        UID = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tid != null" >
+        TID = #{record.tid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apply != null" >
+        APPLY = #{record.apply,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update thesisapply
+    set THID = #{record.thid,jdbcType=VARCHAR},
+      UID = #{record.uid,jdbcType=VARCHAR},
+      TID = #{record.tid,jdbcType=VARCHAR},
+      APPLY = #{record.apply,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hnist.graduation.entity.Thesisapply" >
+    update thesisapply
+    <set >
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="apply != null" >
+        APPLY = #{apply,jdbcType=INTEGER},
+      </if>
+    </set>
+    where THID = #{thid,jdbcType=VARCHAR}
+      and UID = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hnist.graduation.entity.Thesisapply" >
+    update thesisapply
+    set TID = #{tid,jdbcType=VARCHAR},
+      APPLY = #{apply,jdbcType=INTEGER}
+    where THID = #{thid,jdbcType=VARCHAR}
+      and UID = #{uid,jdbcType=VARCHAR}
+  </update>
+</mapper>

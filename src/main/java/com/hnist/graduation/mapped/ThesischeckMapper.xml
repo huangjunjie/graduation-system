@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hnist.graduation.mapped.ThesischeckMapper" >
+  <resultMap id="BaseResultMap" type="com.hnist.graduation.entity.Thesischeck" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="THID" property="thid" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="THTITLE" property="thtitle" jdbcType="VARCHAR" />
+    <result column="THCLASS" property="thclass" jdbcType="VARCHAR" />
+    <result column="THFROM" property="thfrom" jdbcType="VARCHAR" />
+    <result column="CHECKD" property="checkd" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, THID, TID, THTITLE, THCLASS, THFROM, CHECKD
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hnist.graduation.entity.ThesischeckExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from thesischeck
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from thesischeck
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from thesischeck
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hnist.graduation.entity.ThesischeckExample" >
+    delete from thesischeck
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hnist.graduation.entity.Thesischeck" >
+    insert into thesischeck (ID, THID, TID, 
+      THTITLE, THCLASS, THFROM, 
+      CHECKD)
+    values (#{id,jdbcType=INTEGER}, #{thid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, 
+      #{thtitle,jdbcType=VARCHAR}, #{thclass,jdbcType=VARCHAR}, #{thfrom,jdbcType=VARCHAR}, 
+      #{checkd,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hnist.graduation.entity.Thesischeck" >
+    insert into thesischeck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="thid != null" >
+        THID,
+      </if>
+      <if test="tid != null" >
+        TID,
+      </if>
+      <if test="thtitle != null" >
+        THTITLE,
+      </if>
+      <if test="thclass != null" >
+        THCLASS,
+      </if>
+      <if test="thfrom != null" >
+        THFROM,
+      </if>
+      <if test="checkd != null" >
+        CHECKD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="thid != null" >
+        #{thid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="thtitle != null" >
+        #{thtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="thclass != null" >
+        #{thclass,jdbcType=VARCHAR},
+      </if>
+      <if test="thfrom != null" >
+        #{thfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="checkd != null" >
+        #{checkd,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hnist.graduation.entity.ThesischeckExample" resultType="java.lang.Integer" >
+    select count(*) from thesischeck
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update thesischeck
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.thid != null" >
+        THID = #{record.thid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tid != null" >
+        TID = #{record.tid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thtitle != null" >
+        THTITLE = #{record.thtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thclass != null" >
+        THCLASS = #{record.thclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thfrom != null" >
+        THFROM = #{record.thfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkd != null" >
+        CHECKD = #{record.checkd,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update thesischeck
+    set ID = #{record.id,jdbcType=INTEGER},
+      THID = #{record.thid,jdbcType=VARCHAR},
+      TID = #{record.tid,jdbcType=VARCHAR},
+      THTITLE = #{record.thtitle,jdbcType=VARCHAR},
+      THCLASS = #{record.thclass,jdbcType=VARCHAR},
+      THFROM = #{record.thfrom,jdbcType=VARCHAR},
+      CHECKD = #{record.checkd,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hnist.graduation.entity.Thesischeck" >
+    update thesischeck
+    <set >
+      <if test="thid != null" >
+        THID = #{thid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="thtitle != null" >
+        THTITLE = #{thtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="thclass != null" >
+        THCLASS = #{thclass,jdbcType=VARCHAR},
+      </if>
+      <if test="thfrom != null" >
+        THFROM = #{thfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="checkd != null" >
+        CHECKD = #{checkd,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hnist.graduation.entity.Thesischeck" >
+    update thesischeck
+    set THID = #{thid,jdbcType=VARCHAR},
+      TID = #{tid,jdbcType=VARCHAR},
+      THTITLE = #{thtitle,jdbcType=VARCHAR},
+      THCLASS = #{thclass,jdbcType=VARCHAR},
+      THFROM = #{thfrom,jdbcType=VARCHAR},
+      CHECKD = #{checkd,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hnist.graduation.mapped.RelationMapper" >
+  <resultMap id="BaseResultMap" type="com.hnist.graduation.entity.ThesisInfo" >
+  	<association property="thesisapply" resultMap="Thesisapply"/>
+  	<association property="thesischeck" resultMap="Thesischeck"/>
+  </resultMap>
+  <resultMap id="Thesisapply" type="com.hnist.graduation.entity.Thesisapply" >
+    <id column="THID" property="thid" jdbcType="VARCHAR" />
+    <id column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="APPLY" property="apply" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="Thesischeck" type="com.hnist.graduation.entity.Thesischeck" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="THID" property="thid" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="THTITLE" property="thtitle" jdbcType="VARCHAR" />
+    <result column="THCLASS" property="thclass" jdbcType="VARCHAR" />
+    <result column="THFROM" property="thfrom" jdbcType="VARCHAR" />
+    <result column="CHECKD" property="checkd" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="thesisapplyVo" type="com.hnist.graduation.entity.ThesisapplyVo" >
+    <id column="THID" property="thid" jdbcType="VARCHAR" />
+    <result column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="THTITLE" property="thtitle" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CLASSES" property="classes" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectThesisInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select
+  	*
+    from `thesischeck`, `thesisapply` Where `thesischeck`.THID = `thesisapply`.THID AND thesisapply.UID = #{UID,jdbcType=VARCHAR} ;
+  </select>
+  <select  id="selectThesisApply" parameterType="java.lang.String" resultMap="thesisapplyVo">
+  	select `thesisapply`.THID , `thesisapply`.UID , `thesischeck`.THTITLE , `studentinfo`.NAME ,`studentinfo`.CLASSES ,`studentinfo`.TEL
+  	from `thesisapply` , `thesischeck` ,`studentinfo`
+  	Where `thesisapply`.THID = `thesischeck`.THID AND
+  	      `thesisapply`.UID  = `studentinfo`.UID  AND
+  	      `thesisapply`.APPLY=1 AND
+  		  `thesisapply`.TID  = #{TID,jdbcType=VARCHAR};
+  </select>
+</mapper>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hnist.graduation.mapped.OpenreportMapper" >
+  <resultMap id="BaseResultMap" type="com.hnist.graduation.entity.Openreport" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORID" property="orid" jdbcType="VARCHAR" />
+    <result column="THID" property="thid" jdbcType="VARCHAR" />
+    <result column="TID" property="tid" jdbcType="VARCHAR" />
+    <result column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="CONTENTA" property="contenta" jdbcType="VARCHAR" />
+    <result column="CONTENTB" property="contentb" jdbcType="VARCHAR" />
+    <result column="CONTENTC" property="contentc" jdbcType="VARCHAR" />
+    <result column="CONTENTD" property="contentd" jdbcType="VARCHAR" />
+    <result column="CONTENTE" property="contente" jdbcType="VARCHAR" />
+    <result column="CONTENTF" property="contentf" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="LASTTIME" property="lasttime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORID, THID, TID, UID, CONTENTA, CONTENTB, CONTENTC, CONTENTD, CONTENTE, CONTENTF, 
+    REMARK, STATUS, LASTTIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hnist.graduation.entity.OpenreportExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from openreport
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from openreport
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from openreport
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hnist.graduation.entity.OpenreportExample" >
+    delete from openreport
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hnist.graduation.entity.Openreport" >
+    insert into openreport (ID, ORID, THID, 
+      TID, UID, CONTENTA, 
+      CONTENTB, CONTENTC, CONTENTD, 
+      CONTENTE, CONTENTF, REMARK, 
+      STATUS, LASTTIME)
+    values (#{id,jdbcType=INTEGER}, #{orid,jdbcType=VARCHAR}, #{thid,jdbcType=VARCHAR}, 
+      #{tid,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{contenta,jdbcType=VARCHAR}, 
+      #{contentb,jdbcType=VARCHAR}, #{contentc,jdbcType=VARCHAR}, #{contentd,jdbcType=VARCHAR}, 
+      #{contente,jdbcType=VARCHAR}, #{contentf,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{lasttime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hnist.graduation.entity.Openreport" >
+    insert into openreport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orid != null" >
+        ORID,
+      </if>
+      <if test="thid != null" >
+        THID,
+      </if>
+      <if test="tid != null" >
+        TID,
+      </if>
+      <if test="uid != null" >
+        UID,
+      </if>
+      <if test="contenta != null" >
+        CONTENTA,
+      </if>
+      <if test="contentb != null" >
+        CONTENTB,
+      </if>
+      <if test="contentc != null" >
+        CONTENTC,
+      </if>
+      <if test="contentd != null" >
+        CONTENTD,
+      </if>
+      <if test="contente != null" >
+        CONTENTE,
+      </if>
+      <if test="contentf != null" >
+        CONTENTF,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="lasttime != null" >
+        LASTTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orid != null" >
+        #{orid,jdbcType=VARCHAR},
+      </if>
+      <if test="thid != null" >
+        #{thid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="contenta != null" >
+        #{contenta,jdbcType=VARCHAR},
+      </if>
+      <if test="contentb != null" >
+        #{contentb,jdbcType=VARCHAR},
+      </if>
+      <if test="contentc != null" >
+        #{contentc,jdbcType=VARCHAR},
+      </if>
+      <if test="contentd != null" >
+        #{contentd,jdbcType=VARCHAR},
+      </if>
+      <if test="contente != null" >
+        #{contente,jdbcType=VARCHAR},
+      </if>
+      <if test="contentf != null" >
+        #{contentf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lasttime != null" >
+        #{lasttime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hnist.graduation.entity.OpenreportExample" resultType="java.lang.Integer" >
+    select count(*) from openreport
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update openreport
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orid != null" >
+        ORID = #{record.orid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thid != null" >
+        THID = #{record.thid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tid != null" >
+        TID = #{record.tid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        UID = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contenta != null" >
+        CONTENTA = #{record.contenta,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentb != null" >
+        CONTENTB = #{record.contentb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentc != null" >
+        CONTENTC = #{record.contentc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentd != null" >
+        CONTENTD = #{record.contentd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contente != null" >
+        CONTENTE = #{record.contente,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentf != null" >
+        CONTENTF = #{record.contentf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.lasttime != null" >
+        LASTTIME = #{record.lasttime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update openreport
+    set ID = #{record.id,jdbcType=INTEGER},
+      ORID = #{record.orid,jdbcType=VARCHAR},
+      THID = #{record.thid,jdbcType=VARCHAR},
+      TID = #{record.tid,jdbcType=VARCHAR},
+      UID = #{record.uid,jdbcType=VARCHAR},
+      CONTENTA = #{record.contenta,jdbcType=VARCHAR},
+      CONTENTB = #{record.contentb,jdbcType=VARCHAR},
+      CONTENTC = #{record.contentc,jdbcType=VARCHAR},
+      CONTENTD = #{record.contentd,jdbcType=VARCHAR},
+      CONTENTE = #{record.contente,jdbcType=VARCHAR},
+      CONTENTF = #{record.contentf,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      LASTTIME = #{record.lasttime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hnist.graduation.entity.Openreport" >
+    update openreport
+    <set >
+      <if test="orid != null" >
+        ORID = #{orid,jdbcType=VARCHAR},
+      </if>
+      <if test="thid != null" >
+        THID = #{thid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        UID = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="contenta != null" >
+        CONTENTA = #{contenta,jdbcType=VARCHAR},
+      </if>
+      <if test="contentb != null" >
+        CONTENTB = #{contentb,jdbcType=VARCHAR},
+      </if>
+      <if test="contentc != null" >
+        CONTENTC = #{contentc,jdbcType=VARCHAR},
+      </if>
+      <if test="contentd != null" >
+        CONTENTD = #{contentd,jdbcType=VARCHAR},
+      </if>
+      <if test="contente != null" >
+        CONTENTE = #{contente,jdbcType=VARCHAR},
+      </if>
+      <if test="contentf != null" >
+        CONTENTF = #{contentf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lasttime != null" >
+        LASTTIME = #{lasttime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hnist.graduation.entity.Openreport" >
+    update openreport
+    set ORID = #{orid,jdbcType=VARCHAR},
+      THID = #{thid,jdbcType=VARCHAR},
+      TID = #{tid,jdbcType=VARCHAR},
+      UID = #{uid,jdbcType=VARCHAR},
+      CONTENTA = #{contenta,jdbcType=VARCHAR},
+      CONTENTB = #{contentb,jdbcType=VARCHAR},
+      CONTENTC = #{contentc,jdbcType=VARCHAR},
+      CONTENTD = #{contentd,jdbcType=VARCHAR},
+      CONTENTE = #{contente,jdbcType=VARCHAR},
+      CONTENTF = #{contentf,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      LASTTIME = #{lasttime,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
