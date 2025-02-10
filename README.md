@@ -1,6 +1,6 @@
 # graduation-system 
 
-![GitHub License](https://img.shields.io/github/license/https%3A%2F%2Fgithub.com%2Fhuangjunjie%2F/https%3A%2F%2Fgithub.com%2Fhuangjunjie%2Fgraduation-system)
+![GitHub License](https://img.shields.io/github/license/huangjunjie/graduation-system)
 
 maven + spring + mybatis<br>
 
