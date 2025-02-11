@@ -1,5 +1,6 @@
 # graduation-design-system
 
+
 ![GitHub License](https://img.shields.io/github/license/huangjunjie/graduation-system)
 
 工程介绍：
@@ -12,15 +13,17 @@
 | 后端技术     | java + spring + mybatis | 基于 spring 4.0.2.RELEASE  开发 |
 
 ## 介绍
----------------
+
 > 一套设计运行在高校的电子毕业设计管理系统<br>
 
 ## 系统架构图
---------------
+
+
 > 前端->spring->mybatis<br>
 
 ## 功能
--------------
+
+
 *实现系统用户信息的管理功能和用户对系统的登录功能；<br>
 *实现教师信息的管理功能（增删查改、导入、导出）；<br>
 *实现学生信息的管理功能（增删查改、导入、导出）；<br>
