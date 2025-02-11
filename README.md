@@ -1,4 +1,4 @@
-# graduation-system
+# graduation-design-system
 
 ![GitHub License](https://img.shields.io/github/license/huangjunjie/graduation-system)
 
